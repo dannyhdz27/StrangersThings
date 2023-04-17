@@ -3,7 +3,7 @@ const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 
 export default async function fetchData() {
   try {
-    const response = await fetch(`${BASE_URL}/posts`);
+    const returned = await fetch(`${BASE_URL}/posts`);
     const data = response.json();
 
     console.log("data", data);
