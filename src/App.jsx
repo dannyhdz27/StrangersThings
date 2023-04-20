@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "./App.css";
-import fetchData from "./API/api";
 import { Routes, Route, Link } from "react-router-dom";
-import PostsComponent from "./components/posts";
+import RegisterForm from "./components/RegisterForm";
+import useAuth from "./hooks/useAuth";
 import Home from "./components/Home";
+import PostsComponent from "./components/posts";
 
 function App() {
+  const { token, user } = useAuth();
   return (
     <div className="App">
       <h2>Strangers Things</h2>
@@ -21,6 +23,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/posts" element={<PostsComponent />} />
       </Routes>
+      <RegisterForm />
     </div>
   );
   // {
