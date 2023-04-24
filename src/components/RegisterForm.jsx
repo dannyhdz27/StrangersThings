@@ -3,20 +3,23 @@ import useAuth from "../hooks/useAuth";
 const COHORT_NAME = "2301-FTB-ET-WEB-AM";
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 
-async function registerUser() {
-  const response = await fetch(`${BASE_URL}/user/register`, {
+async function registerUser(username, password) {
+  const response = await fetch(`${BASE_URL}/users/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      //Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      /* whatever things you need to send to the API */
+      user: {
+        username: "superman27",
+        password: "krypt0n0rbust",
+      } /* whatever things you need to send to the API */,
     }),
   });
   const result = await response.json();
   console.log(result);
-  return result;
+  return result.token;
 }
 //return token;
 
