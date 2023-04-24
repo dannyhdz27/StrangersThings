@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 import { fetchMe } from "../API/api.jsx";
-
 // Create the context
 export const AuthContext = createContext();
 

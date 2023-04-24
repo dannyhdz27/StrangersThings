@@ -19,7 +19,7 @@ export default function RegisterForm() {
     }
   }
   return (
-    <div>
+    <div className="form">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -33,10 +33,8 @@ export default function RegisterForm() {
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button>Submit</button>
+        <button>Login</button>
       </form>
     </div>
   );
-
-  RegisterForm();
 }
