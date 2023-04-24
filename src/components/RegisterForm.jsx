@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LoginComponent from "./LoginComponent";
 import useAuth from "../hooks/useAuth";
 const COHORT_NAME = "2301-FTB-ET-WEB-AM";
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
@@ -21,6 +22,22 @@ async function registerUser(username, password) {
   console.log(result);
   return result.token;
 }
+async function loginUser(username, password) {
+  const response = await fetch("${BASE_URL}/users/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user: {
+        username: "superman27",
+        password: "krypt0n0rbust",
+      },
+    }),
+  });
+  const result = await response.json();
+  return result;
+}
 //return token;
 
 export default function RegisterForm() {
@@ -35,7 +52,7 @@ export default function RegisterForm() {
     try {
       const result = await registerUser(username, password);
       console.log("Result in Component: ", result);
-      setToken(result.data.token);
+      setToken(result.token);
     } catch (error) {
       console.error(error);
     }
@@ -55,8 +72,16 @@ export default function RegisterForm() {
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button>Login</button>
+        <input
+          type="text"
+          name="password"
+          placeholder="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button>Register</button>
+        
       </form>
     </div>
   );
+  <LoginComponent />;
 }
