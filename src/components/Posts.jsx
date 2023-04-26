@@ -18,7 +18,8 @@ const PostsComponent = () => {
           return (
             <div className="postCard" key={idx}>
               <div className="textInfo">
-                <h2>{post.title}</h2>
+                <h2 className="postTitle">{post.title}</h2>
+
                 <p>{post.description}</p>
               </div>
               {/* 

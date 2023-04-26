@@ -19,26 +19,9 @@ async function registerUser(username, password) {
     }),
   });
   const result = await response.json();
-  console.log(result);
-  return result.token;
-}
-async function loginUser(username, password) {
-  const response = await fetch("${BASE_URL}/users/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      user: {
-        username: "superman27",
-        password: "krypt0n0rbust",
-      },
-    }),
-  });
-  const result = await response.json();
+  console.log("result of registering", result);
   return result;
 }
-//return token;
 
 export default function RegisterForm() {
   const [username, setUsername] = useState("");
@@ -58,30 +41,31 @@ export default function RegisterForm() {
     }
   }
   return (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
+    <div>
+      <h2>REGISTER</h2>
+      <div className="form">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="text"
+            name="password"
+            placeholder="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {/* <input
           type="text"
           name="password"
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          type="text"
-          name="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button>Register</button>
-        
-      </form>
+        /> */}
+          <button type="submit">Register</button>
+        </form>
+      </div>
     </div>
   );
-  <LoginComponent />;
 }
