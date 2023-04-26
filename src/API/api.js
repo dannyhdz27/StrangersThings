@@ -34,6 +34,23 @@ export async function registerUser(username, password) {
   }
 }
 
+export async function loginUser(username, password) {
+  const response = await fetch(`${BASE_URL}/users/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user: {
+        username,
+        password,
+      },
+    }),
+  });
+  const result = await response.json();
+  return result;
+}
+
 export async function fetchMe(token) {
   try {
     const response = await fetch(`${BASE_URL}/users/me`, {

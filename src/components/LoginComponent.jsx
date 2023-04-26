@@ -1,34 +1,22 @@
 import { useState } from "react";
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import RegisterForm from "./RegisterForm";
+import { loginUser } from "../API/api";
+import useAuth from "../hooks/useAuth";
 
-export default function LoginForm() {
+export default function LoginForm(token) {
+  const { setToken, user } = useAuth();
+
   const [username, checkUsername] = useState("");
   const [password, checkPassword] = useState("");
-
-  async function loginUser(username, password) {
-    const response = await fetch("${BASE_URL}/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: {
-          username: "superman27",
-          password: "krypt0n0rbust",
-        },
-      }),
-    });
-    const result = await response.json();
-    return result;
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       const result = await loginUser(username, password);
-      console.log("Return from Component: ", result);
+      console.log("Return from login component: ", result);
+      setToken(result.data.token);
+      localStorage.setItem("token", result.data.token);
     } catch (err) {
       console.error(err);
     }

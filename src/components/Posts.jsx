@@ -1,5 +1,6 @@
 import post from "../API/api";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PostsComponent = () => {
   const [posts, setPosts] = useState([]);
@@ -22,8 +23,8 @@ const PostsComponent = () => {
 
                 <p>{post.description}</p>
               </div>
-              {/* 
-              <button
+
+              {/* <button
                 key={post.id}
                 onClick={() => {
                   navigate(`/$(post.id)`);

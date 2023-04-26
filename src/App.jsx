@@ -7,7 +7,7 @@ import PostsComponent from "./components/posts";
 import "./App.css";
 
 function App() {
-  const { token, user } = useAuth();
+  const { token, user, setToken } = useAuth();
   return (
     <div className="App">
       <h2>Strangers Things</h2>
@@ -15,6 +15,16 @@ function App() {
         <Link to="/">Home</Link>
 
         <Link to="/posts">Posts</Link>
+        <button
+          onClick={() => {
+            // clear the token
+            setToken(null);
+            localStorage.removeItem("token");
+            navigate("/login");
+          }}
+        >
+          Log Out
+        </button>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
