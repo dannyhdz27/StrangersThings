@@ -11,7 +11,7 @@ export default function CreatePost() {
   async function submitPost(e) {
     e.preventDefault();
     try {
-      const result = await makePost(title, description, token);
+      const result = await makePost(token, title, description);
       console.log("Return from makePost component: ", result);
     } catch (err) {
       console.error(err);

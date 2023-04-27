@@ -79,6 +79,8 @@ export async function makePost(token, title, description) {
         post: {
           title,
           description,
+          price: "$480.00",
+          willDeliver: true,
         },
       }),
     });
