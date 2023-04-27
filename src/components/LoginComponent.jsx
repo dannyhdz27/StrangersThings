@@ -9,9 +9,9 @@ export default function LoginForm(token) {
 
   //trying to navigate to profile once sign in button is clicked
   const navigate = useNavigate();
-  const clickHandler = () => {
-    navigate("/profile");
-  };
+  // const clickHandler = () => {
+  //   navigate("/profile");
+  // };
 
   const [username, checkUsername] = useState("");
   const [password, checkPassword] = useState("");
@@ -22,6 +22,7 @@ export default function LoginForm(token) {
       const result = await loginUser(username, password);
       console.log("Return from login component: ", result);
       setToken(result.data.token);
+      navigate("/profile");
       localStorage.setItem("token", result.data.token);
     } catch (err) {
       console.error(err);
@@ -33,13 +34,15 @@ export default function LoginForm(token) {
       <div className="form">
         <form onSubmit={handleSubmit}>
           <input
+            required
             type="text"
             name="username"
             placeholder="username"
             onChange={(e) => checkUsername(e.target.value)}
           />
           <input
-            type="text"
+            required
+            type="password"
             name="password"
             placeholder="password"
             onChange={(e) => checkPassword(e.target.value)}
