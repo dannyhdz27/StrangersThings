@@ -9,6 +9,7 @@ import "./App.css";
 import { ProtectedRoute } from "./components/Home";
 import { Profile } from "./components/Profile";
 import AuthProvider from "./components/AuthProvider";
+import CreatePost from "./components/CreatePost";
 
 function App() {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ function App() {
 
         <Link to="/posts">Posts</Link>
         <Link to="/profile">Profile</Link>
+        <Link to="/createpost">Make A Post</Link>
 
         <button
           onClick={() => {
@@ -39,6 +41,7 @@ function App() {
         <Route path="/posts" element={<PostsComponent />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/createpost" element={<CreatePost />} />
       </Routes>
     </div>
   );
