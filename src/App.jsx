@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm";
 import useAuth from "./hooks/useAuth";
 import Home from "./components/Home";
 import PostsComponent from "./components/posts";
 import "./App.css";
+import { ProtectedRoute } from "./components/Home";
+import { Profile } from "./components/Profile";
+import AuthProvider from "./components/AuthProvider";
 
 function App() {
+  const navigate = useNavigate();
   const { token, user, setToken } = useAuth();
   return (
     <div className="App">
@@ -15,12 +20,15 @@ function App() {
         <Link to="/">Home</Link>
 
         <Link to="/posts">Posts</Link>
+        <Link to="/profile">Profile</Link>
+
         <button
           onClick={() => {
             // clear the token
             setToken(null);
             localStorage.removeItem("token");
-            navigate("/login");
+            navigate("/");
+            // setUser(undefined);
           }}
         >
           Log Out
@@ -30,6 +38,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/posts" element={<PostsComponent />} />
         <Route path="/register" element={<RegisterForm />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );

@@ -1,11 +1,17 @@
 import { useState } from "react";
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../API/api";
 import useAuth from "../hooks/useAuth";
 
 export default function LoginForm(token) {
   const { setToken, user } = useAuth();
+
+  //trying to navigate to profile once sign in button is clicked
+  const navigate = useNavigate();
+  const clickHandler = () => {
+    navigate("/profile");
+  };
 
   const [username, checkUsername] = useState("");
   const [password, checkPassword] = useState("");
@@ -38,7 +44,7 @@ export default function LoginForm(token) {
             placeholder="password"
             onChange={(e) => checkPassword(e.target.value)}
           />
-          <button type="submit">Login</button>
+          <button>Login</button>
         </form>
       </div>
     </div>
