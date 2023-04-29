@@ -21,7 +21,7 @@ export default function CreatePost() {
   return (
     <div>
       <h2>MAKE POST</h2>
-      <div>
+      <div className="createPostForm">
         <form onSubmit={submitPost}>
           <input
             required
@@ -30,7 +30,9 @@ export default function CreatePost() {
             placeholder="title"
             onChange={(e) => setTitle(e.target.value)}
           />
-          <input
+          <textarea
+            rows="10"
+            cols="50"
             required
             type="text"
             name="description"

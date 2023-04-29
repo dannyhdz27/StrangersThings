@@ -65,3 +65,7 @@ input {
 input {
   width: 100%;
 }
+
+.createPostForm button {
+  display: block;
+}
