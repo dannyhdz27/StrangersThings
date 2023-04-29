@@ -1,27 +1,26 @@
 import { useState } from "react";
-import LoginComponent from "./LoginComponent";
-import useAuth from "../hooks/useAuth";
-const COHORT_NAME = "2301-FTB-ET-WEB-AM";
-const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
-import TokenComponent from "./TokenComponent";
 
-async function registerUser(username, password) {
-  const response = await fetch(`${BASE_URL}/users/register`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      user: {
-        username,
-        password,
-      } /* whatever things you need to send to the API */,
-    }),
-  });
-  const result = await response.json();
-  console.log("result of registering", result);
-  return result;
-}
+import useAuth from "../hooks/useAuth";
+
+import { registerUser } from "../API/api";
+
+// async function registerUser(username, password) {
+//   const response = await fetch(`${BASE_URL}/users/register`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       user: {
+//         username,
+//         password,
+//       } /* whatever things you need to send to the API */,
+//     }),
+//   });
+//   const result = await response.json();
+//   console.log("result of registering", result);
+//   return result;
+// }
 
 export default function RegisterForm() {
   const [username, setUsername] = useState("");

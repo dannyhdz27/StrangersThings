@@ -1,15 +1,23 @@
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm";
 import useAuth from "./hooks/useAuth";
 import Home from "./components/Home";
 import PostsComponent from "./components/posts";
 import "./App.css";
-import { ProtectedRoute } from "./components/Home";
 import { Profile } from "./components/Profile";
 import AuthProvider from "./components/AuthProvider";
 import CreatePost from "./components/CreatePost";
+
+const ProtectedRoute = () => {
+  const { token } = useAuth();
+  if (token) {
+    return <Outlet />;
+  } else {
+    return <Home />;
+  }
+};
 
 function App() {
   const navigate = useNavigate();
@@ -19,10 +27,15 @@ function App() {
       <h2>Strangers Things</h2>
       <nav>
         <Link to="/">Home</Link>
-
+        {/* {token || <Link to="/">Sign in</Link>} */}
+        {token && (
+          // <></> is a React Fragment. This allows for rendering two elements without nesting them in another parent element
+          <>
+            <Link to="/profile">Profile</Link>
+            <Link to="/createpost">Make A Post</Link>
+          </>
+        )}
         <Link to="/posts">Posts</Link>
-        <Link to="/profile">Profile</Link>
-        <Link to="/createpost">Make A Post</Link>
 
         <button
           onClick={() => {
@@ -40,8 +53,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/posts" element={<PostsComponent />} />
         <Route path="/register" element={<RegisterForm />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/createpost" element={<CreatePost />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/createpost" element={<CreatePost />} />
+        </Route>
       </Routes>
     </div>
   );
