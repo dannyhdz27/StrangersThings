@@ -22,6 +22,7 @@ const PostsComponent = () => {
                 <h2 className="postTitle">{post.title}</h2>
 
                 <p>{post.description}</p>
+                <p>{post.price}</p>
               </div>
 
               {/* <button

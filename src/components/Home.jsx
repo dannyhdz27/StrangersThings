@@ -16,7 +16,7 @@ export const ProtectedRoute = () => {
 
 const Home = () => {
   return (
-    <div>
+    <div className="loginForm">
       <LoginForm />
       <Link to="/register">Don't have an account? Sign Up</Link>
     </div>

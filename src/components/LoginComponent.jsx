@@ -29,7 +29,7 @@ export default function LoginForm(token) {
     }
   }
   return (
-    <div>
+    <div className="outerForm">
       <h2>LOG IN</h2>
       <div className="form">
         <form onSubmit={handleSubmit}>

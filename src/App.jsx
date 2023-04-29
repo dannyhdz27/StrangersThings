@@ -45,9 +45,6 @@ function App() {
       </Routes>
     </div>
   );
-  // {
-  //   fetchData();
-  // }
 }
 
 export default App;
