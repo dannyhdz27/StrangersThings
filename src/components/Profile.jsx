@@ -20,7 +20,13 @@ export const Profile = () => {
     <div>
       <h2>PROFILE</h2>
       <h1>Hello {name}</h1>
-      <button>Make a Post</button>
+      <button
+        onClick={() => {
+          navigate("/createpost");
+        }}
+      >
+        Make a Post
+      </button>
     </div>
   );
 };

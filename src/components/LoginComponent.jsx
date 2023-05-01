@@ -7,11 +7,7 @@ import useAuth from "../hooks/useAuth";
 export default function LoginForm(token) {
   const { setToken, user } = useAuth();
 
-  //trying to navigate to profile once sign in button is clicked
   const navigate = useNavigate();
-  // const clickHandler = () => {
-  //   navigate("/profile");
-  // };
 
   const [username, checkUsername] = useState("");
   const [password, checkPassword] = useState("");
@@ -28,6 +24,7 @@ export default function LoginForm(token) {
       console.error(err);
     }
   }
+
   return (
     <div className="outerForm">
       <h2>LOG IN</h2>

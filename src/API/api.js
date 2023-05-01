@@ -67,7 +67,7 @@ export async function fetchMe(token) {
   }
 }
 
-export async function makePost(token, title, description) {
+export async function makePost(token, title, description, price) {
   try {
     const response = await fetch(`${BASE_URL}/posts`, {
       method: "POST",
@@ -79,10 +79,27 @@ export async function makePost(token, title, description) {
         post: {
           title,
           description,
-          price: "$480.00",
+          price,
           willDeliver: true,
         },
       }),
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function deletePost(token, id) {
+  try {
+    const response = await fetch(`${BASE_URL}/posts/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
     const result = await response.json();
     console.log(result);

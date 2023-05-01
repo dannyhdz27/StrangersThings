@@ -1,8 +1,20 @@
 import post from "../API/api";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { deletePost } from "../API/api";
+import useAuth from "../hooks/useAuth";
 const PostsComponent = () => {
+  const { token } = useAuth();
+  async function handleDelete(id) {
+    try {
+      const result = await deletePost(token, post.id);
+      console.log("deletePost result", result);
+    } catch (error) {
+      console.error(error);
+    }
+
+    // console.log("post ID to delete", postIdToDelete);
+    // await deletePost(token);
+  }
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     async function fetchPosts() {
@@ -25,12 +37,9 @@ const PostsComponent = () => {
                 <p>{post.price}</p>
               </div>
 
-              {/* <button
-                key={post.id}
-                onClick={() => {
-                  navigate(`/$(post.id)`);
-                }}
-              ></button> */}
+              <button key={post.id} onClick={handleDelete}>
+                DELETE
+              </button>
             </div>
           );
         })}

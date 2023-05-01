@@ -7,11 +7,12 @@ import useAuth from "../hooks/useAuth";
 export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
   const { token } = useAuth();
   async function submitPost(e) {
     e.preventDefault();
     try {
-      const result = await makePost(token, title, description);
+      const result = await makePost(token, title, description, price);
       console.log("Return from makePost component: ", result);
     } catch (err) {
       console.error(err);
@@ -38,6 +39,13 @@ export default function CreatePost() {
             name="description"
             placeholder="description"
             onChange={(e) => setDescription(e.target.value)}
+          />
+          <input
+            required
+            type="text"
+            name="price"
+            placeholder="price"
+            onChange={(e) => setPrice(e.target.value)}
           />
           <button>Create Post</button>
         </form>
